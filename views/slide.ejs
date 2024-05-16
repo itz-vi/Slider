@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>slide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<style>
+  body {
+    background-color: #48c6ef;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+    width: 1800px;
+    margin-top: 100px;
+  }
+
+  .card {
+    color: white;
+    background-image: linear-gradient(to right, #6b11cbc5 0%, #005eff 100%);
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    width: 290px;
+    height: 280px;
+  }
+
+
+  .slide:hover {
+    box-shadow: 0px 5px 32px 15px rgba(113, 172, 255, 0.481);
+    border: 8px double rgba(48, 44, 168, 0.672);
+  }
+
+  .image img {
+    margin: 40px;
+    margin-left: 55px;
+    padding: 0;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 8px solid rgba(3, 46, 163, 0.461);
+  }
+
+  .image img:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 5px 32px 15px rgba(38, 128, 255, 0.264);
+    border: 8px solid rgba(0, 187, 255, 0.847);
+  }
+
+
+
+  /* -------- Card ---------------- */
+  /* .card {
+    border: none;
+    color: white;
+    background-image: linear-gradient(to right, #6b11cbc5 0%, #005eff 100%);
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 280px;
+    width: 250px;
+  } */
+
+  .card:hover {
+    color: #ffffff;
+    transform: scale(1.02);
+    outline: 5px solid #0da2e7e6;
+    box-shadow: 4px 15px 37px -4px #ffffffc0;
+  }
+
+  .card-img:hover {
+    transform: scale(1.03);
+    box-shadow: 5px 25px 32px -5px rgba(38, 128, 255, 0.459);
+    border: 5px double rgba(32, 13, 141, 0.847);
+
+
+  }
+
+
+  .card-title {
+    color: rgb(255, 255, 255);
+  }
+
+  .card-title:hover {
+    color: aquamarine;
+  }
+
+  .card4-text {
+    text-transform: lowercase;
+  }
+
+  /*    ------ arrow - link ----------------- */
+  .arrow-link {
+    color: white;
+    text-decoration: none !important;
+    font-size: 40px;
+  }
+
+  .arrow-link::after {
+    position: absolute;
+    content: "\2192";
+    margin-left: 180px;
+    margin-top: -110px;
+  }
+
+  .arrow-link:hover {
+    color: aqua;
+    background-color: #ffffff
+  }
+
+
+  /*  ----  top - button --------------  */
+  .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 233px;
+  }
+
+  .items a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: -80px;
+    text-decoration: none !important;
+  }
+
+  .button {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #2c9caf;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #2c9caf;
+  }
+
+  button:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #70bdca;
+    box-shadow: 4px 5px 17px -4px #268391;
+  }
+
+  button::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #2c9caf;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+  }
+
+  button:hover::before {
+    width: 250%;
+  }
+
+  .update {
+    padding: 5px;
+    font-style: 15px;
+    color: white;
+    background-color: #0a4faf;
+    border: 2px solid powderblue;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+</style>
+
+<body>
+  <div class="items">
+    <a href="/addslide">
+      <button class="button">Add Slides</button>
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="slide">
+      <div class="image">
+        <img src="/images/pc.webp">
+      </div>
+
+      <% if(slide.length===0) {%>
+        <h1 style="color: white;"> There is NO Slide Found. Create a new Slide </h1>
+        <% } else { %>
+
+          <% slide.forEach(slide=> { %>
+
+            <div class="card">
+              <img class="card-img" src="http://localhost:3000/uploads/<%= slide.image %>"
+                style="height:6.5rem; width: 8rem;">
+              <a href="https://ondisneyplus.disney.com/" target="_blank" class="arrow-link"> </a>
+              <div class="card-body">
+
+                <a href="https://disneyanimation.com/" target="_blank" style="text-decoration: none;">
+                  <h5 class="card-title">
+                    <%= slide.title %>
+                  </h5>
+                </a>
+                <p class="card-text">
+                  <%= slide.description %>
+                </p>
+                <a href="/update/<%= slide._id %>">
+                  <button class="update">Update Slides</button>
+                </a>
+                <a href="/delete/<%= slide._id %>">
+                  <button class="update">Delete</button>
+                </a>
+              </div>
+            </div>
+            <% });%>
+              <% };%>
+
+
+
+
+                <div class="cards">
+                  <div class="card">
+                    <img class="card-header" src="/images/nike.png" style="height:6rem; width: 9rem;">
+                    <a href="https://www.nike.com/in/" target="_blank" class="arrow-link"> </a>
+                    <div class="card-body">
+                      <a href="https://www.nike.com/in/t/air-force-1-07-shoes-VWCc04/DV0788-001" target="_blank"
+                        style="text-decoration: none;">
+                        <h4 class="card-title">Just Do It</h4>
+                      </a>
+                      <p class="card-text">The only way to finish is to start</p>
+                      <a href="/update/<%= slide._id %>">
+                        <button class="update">Update Slides</button>
+                      </a>
+                      <a href="/delete/<%= slide._id %>">
+                        <button class="update">Delete</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cards">
+                  <div class="card">
+                    <img class="card-header" src="/images/h & m.png" style="height:6rem; width: 8rem;">
+                    <a href="https://www2.hm.com/en_in/men/shop-by-product/hoodies-sweatshirts.html" target="_blank"
+                      class="arrow-link"> </a>
+                    <div class="card-body">
+                      <a href="https://www2.hm.com/en_in/men/new-arrivals/view-all.html" target="_blank"
+                        style="text-decoration: none;">
+                        <h5 class="card-title">Hennes & Mauritz </h5>
+                      </a>
+                      <p class="card-text">It is a global fashion and design company</p>
+                      <a href="/update/<%= slide._id %>">
+                        <button class="update">Update Slides</button>
+                      </a>
+                      <a href="/delete/<%= slide._id %>">
+                        <button class="update">Delete</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cards">
+                  <div class="card">
+                    <img class="card-header" src="/images/marvel.png" style="height:5.4rem; width:11rem;">
+                    <a href="https://www.marvel.com/movies" target="_blank" class="arrow-link"> </a>
+                    <div class="card-body">
+                      <a href=" https://www.marvel.com/" target="_blank" style="text-decoration: none;">
+                        <h5 class="card-title">Whatever It Takes</h4>
+                      </a>
+
+                      <p class="card4-text">YOU GET HURT, HURT ’EM BACK. YOU GET KILLED.</p>
+                      <a href="/update/<%= slide._id %>">
+                        <button class="update">Update Slides</button>
+                      </a>
+                      <a href="/delete/<%= slide._id %>">
+                        <button class="update">Delete</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>
